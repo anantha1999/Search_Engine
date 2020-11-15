@@ -147,7 +147,6 @@ def printresult(query_type,query): #prints the snippets
                 infile = f'Dataset/{doc}'
                 data = pd.read_csv(infile, skiprows = int(row) , nrows=1, usecols=[6])
                 print("Snippet: ",data.values[0][0])
-                result[query]['snippets'].append(data.values[0][0])
                 print("\n\n\n")
 
         end=time.time()
