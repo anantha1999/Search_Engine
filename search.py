@@ -105,10 +105,6 @@ def doc_vec(document,rowno):
     return documentvectors[document][int(rowno)].toarray()
 
 def printresult(query_type,query): #prints the snippets
-        result={}
-        result[query]={}
-        result[query]['snippets']=[]
-        result[query]['time']=0
         
         start=time.time()
         if(query_type == "1" and len(query) == 1):
@@ -119,13 +115,14 @@ def printresult(query_type,query): #prints the snippets
             res=phrase_query_correct(query,inverted_index)
         elif(query_type != "1" and query_type != "2" ):
             print("Please enter a valid query type")
+            return
         else:
             print("There are no matches for this query")
             return
 
         sim={}
-        query = clean_text(query)
-        q_vec= query_vec(query)
+        query_clean = clean_text(query)
+        q_vec= query_vec(query_clean)
         if type(res) == type({}):
             for document,rows in res.items():
                 for row in rows:
@@ -155,7 +152,6 @@ def printresult(query_type,query): #prints the snippets
 
         end=time.time()
         print("Execution Time: ",end-start)
-        result[query]['time']=end-start
 
 def enter_query():
     print("Please input the type of Query : \n '1' for free text queries \n '2' for phrase queries ")
