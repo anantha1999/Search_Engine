@@ -298,7 +298,7 @@ print("Enter number of queries: ")
 k=input()
 if(qtype=='1'):
     for line in (inputfile.read().split('\n')):
-        search_free_text(line,final_result)
+        search_free_text(line,final_result,k)
         resultsdf=pd.DataFrame.from_dict(final_result)
     filename='RetrievedFreeText-'+str(k)+'.pickle'
     with open(filename, 'wb') as handle:
