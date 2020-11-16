@@ -140,17 +140,20 @@ def printresult(query_type,query): #prints the snippets
              pass
         sim_sorted = sorted(sim.items(), key=lambda x: x[1], reverse=True)
         sim_sorted= sim_sorted[0:10]
+        i=1
         for k, v in sim_sorted:
              if v != 0.0:
                 print("Similarity value:", v)
                 doc,row=k.split(",")
-
+                print("Result #", i )
+                i=i+1
                 print("Document Name:",doc)
                 print("Row no: ",row)
                 infile = f'Dataset/{doc}'
                 data = pd.read_csv(infile, skiprows = int(row) , nrows=1, usecols=[6])
                 print("Snippet: ",data.values[0][0])
-                print("\n\n\n")
+                print("\n\n")
+
 
         end=time.time()
         print("Execution Time: ",end-start)
