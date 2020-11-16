@@ -6,7 +6,7 @@
 Basic search engine using Environmental News dataset as the corpus. Performance comparison done with ElasticSearch.
 
 
-###Basic Setup : 
+### Basic Setup : 
 
 Run the search.py file and enter your query. The search engine supports 3 types of queries :
 
