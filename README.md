@@ -15,7 +15,7 @@ inverted_index.json is the generated inverted index
 Run vectorspacegenerator.py to generate the tfidf matrix for the documents
 vectorspace.pickle is the generated vector space matrix for the documents
 
-Performance_comparision file compares the result of our search engine with elasticsearch.
+Performance_comparison file compares the result of our search engine with elasticsearch.
 
 ElasticSearchFinal file is used to generate the relevant results
 
