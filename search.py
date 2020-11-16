@@ -38,7 +38,7 @@ def clean_text(text):
 def one_word_query_dict(word, invertedIndex,result):
     row_id = []
     final_list = []    
-    word = clean_text(word)
+    #word = clean_text(word)
     pattern = re.compile('[\W_]+')
     word = pattern.sub(' ',word)
     if word in invertedIndex.keys():
@@ -51,6 +51,7 @@ def one_word_query_dict(word, invertedIndex,result):
                 result[l[i]] = final_list[i]
             else:
                 result[l[i]] = result[l[i]].union(final_list[i])
+    return result
 
 def free_text_query(string,invertedIndex):
     string = clean_text(string)
@@ -143,7 +144,9 @@ def printresult(query_type,query): #prints the snippets
              if v != 0.0:
                 print("Similarity value:", v)
                 doc,row=k.split(",")
+
                 print("Document Name:",doc)
+                print("Row no: ",row)
                 infile = f'Dataset/{doc}'
                 data = pd.read_csv(infile, skiprows = int(row) , nrows=1, usecols=[6])
                 print("Snippet: ",data.values[0][0])
@@ -153,11 +156,20 @@ def printresult(query_type,query): #prints the snippets
         print("Execution Time: ",end-start)
 
 def enter_query():
-    print("Please input the type of Query : \n '1' for free text queries \n '2' for phrase queries ")
-    query_type = input()
-    print("Please enter the query")
-    query = input()
-    printresult(query_type,query)
+    print(chr(27) + "[2J")
+    print("-------------------------SEARCH ENGINE-----------------------------")
+    print()
+    while(1):
+        query = input("Enter the Query : ")
+        if((query[0]=='\'' and query[len(query)-1]=='\'') or (query[0]=='\"' and query[len(query)-1]=='\"')):
+            query_type='2'
+        else:
+            query_type='1'
+        printresult(query_type,query)
+        ans=input("Do you want to search again? (y/n): ")
+        if(ans=='n'):
+            break
+
 
 with open('inverted_index.json') as f:
     inverted_index = json.load(f)
