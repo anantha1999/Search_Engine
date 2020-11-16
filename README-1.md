@@ -1,7 +1,7 @@
 # Search_Engine
 
 
-Introduction :
+## UE17CS412-AIR Assignment 
 
 Basic search engine using Environmental News dataset as the corpus. Performance comparison done with ElasticSearch.
 
